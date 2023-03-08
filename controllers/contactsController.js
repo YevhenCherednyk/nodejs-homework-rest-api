@@ -8,7 +8,7 @@ const {
 
 const getAll = async (req, res, next) => {
   const contacts = await listContacts();
-  res.json(contacts);
+  res.status(200).json(contacts);
 };
 
 const getById = async (req, res, next) => {
@@ -21,7 +21,7 @@ const getById = async (req, res, next) => {
     throw error;
   }
 
-  res.json(contact);
+  res.status(200).json(contact);
 };
 
 const add = async (req, res, next) => {
@@ -52,7 +52,7 @@ const updateById = async (req, res, next) => {
     throw error;
   }
 
-  res.json(contact);
+  res.status(200).json(contact);
 };
 
 module.exports = { getAll, getById, add, remove, updateById };

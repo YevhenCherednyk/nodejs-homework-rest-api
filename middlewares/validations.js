@@ -2,8 +2,9 @@ const validationAddContact = (schema) => {
   return (req, res, next) => {
     const { error } = schema.validate(req.body);
     if (error) {
+      const fieldName = error.details[0].context.label;
       error.status = 400;
-      error.message = "missing required name field";
+      error.message = `missing required ${fieldName} field`;
       next(error);
       return;
     }
