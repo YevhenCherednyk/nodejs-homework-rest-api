@@ -39,7 +39,7 @@ const remove = async (req, res, next) => {
     throw error;
   }
 
-  res.json({ message: "contact deleted" });
+  res.status(200).json({ message: "contact deleted" });
 };
 
 const updateById = async (req, res, next) => {
