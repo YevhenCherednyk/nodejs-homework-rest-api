@@ -17,7 +17,7 @@ const validationUpdateContact = (schema) => {
     const { error } = schema.validate(req.body);
     if (error) {
       error.status = 400;
-      error.message = "missing fields";
+      error.message = "missing field favorite";
       next(error);
       return;
     }

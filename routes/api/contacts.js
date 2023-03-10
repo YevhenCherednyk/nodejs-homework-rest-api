@@ -14,6 +14,7 @@ const {
   addContact,
   removeContact,
   updateContactById,
+  updateStatusContact,
 } = require("../../controllers/contactsController");
 
 const router = express.Router();
@@ -32,8 +33,16 @@ router.delete("/:contactId", isValidId, ctrlWrapper(removeContact));
 
 router.put(
   "/:contactId",
+  isValidId,
   validationUpdateContact(schemas.addSchema),
   ctrlWrapper(updateContactById)
+);
+
+router.patch(
+  "/:contactId/favorite",
+  isValidId,
+  validationUpdateContact(schemas.updateStatusSchema),
+  ctrlWrapper(updateStatusContact)
 );
 
 module.exports = router;

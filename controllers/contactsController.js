@@ -46,10 +46,27 @@ const updateContactById = async (req, res, next) => {
   res.status(200).json(contact);
 };
 
+const updateStatusContact = async (req, res, next) => {
+  const { contactId } = req.params;
+  const { favorite } = req.body;
+  const contact = await Contact.findByIdAndUpdate(
+    contactId,
+    { favorite },
+    { new: true }
+  );
+
+  if (!contact) {
+    throw RequestError(404, "Not found");
+  }
+
+  res.status(200).json(contact);
+};
+
 module.exports = {
   getAllContacts,
   getContactById,
   addContact,
   removeContact,
   updateContactById,
+  updateStatusContact,
 };
