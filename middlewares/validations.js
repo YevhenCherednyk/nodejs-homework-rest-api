@@ -17,6 +17,19 @@ const validationUpdateContact = (schema) => {
     const { error } = schema.validate(req.body);
     if (error) {
       error.status = 400;
+      error.message = "missing fields";
+      next(error);
+      return;
+    }
+    next();
+  };
+};
+
+const validationUpdateStatusContact = (schema) => {
+  return (req, res, next) => {
+    const { error } = schema.validate(req.body);
+    if (error) {
+      error.status = 400;
       error.message = "missing field favorite";
       next(error);
       return;
@@ -25,4 +38,9 @@ const validationUpdateContact = (schema) => {
   };
 };
 
-module.exports = { validationAddContact, validationUpdateContact };
+
+module.exports = {
+  validationAddContact,
+  validationUpdateContact,
+  validationUpdateStatusContact,
+};

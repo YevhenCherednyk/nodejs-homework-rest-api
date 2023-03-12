@@ -3,6 +3,7 @@ const express = require("express");
 const {
   validationAddContact,
   validationUpdateContact,
+  validationUpdateStatusContact,
   ctrlWrapper,
   isValidId,
 } = require("../../middlewares");
@@ -41,7 +42,7 @@ router.put(
 router.patch(
   "/:contactId/favorite",
   isValidId,
-  validationUpdateContact(schemas.updateStatusSchema),
+  validationUpdateStatusContact(schemas.updateStatusSchema),
   ctrlWrapper(updateStatusContact)
 );
 
