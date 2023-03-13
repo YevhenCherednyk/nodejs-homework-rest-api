@@ -25,4 +25,22 @@ const validationUpdateContact = (schema) => {
   };
 };
 
-module.exports = { validationAddContact, validationUpdateContact };
+const validationUpdateStatusContact = (schema) => {
+  return (req, res, next) => {
+    const { error } = schema.validate(req.body);
+    if (error) {
+      error.status = 400;
+      error.message = "missing field favorite";
+      next(error);
+      return;
+    }
+    next();
+  };
+};
+
+
+module.exports = {
+  validationAddContact,
+  validationUpdateContact,
+  validationUpdateStatusContact,
+};
