@@ -51,10 +51,24 @@ const validationRegister = (schema) => {
     next();
   };
 };
+const validationUpdateSubscription = (schema) => {
+  return (req, res, next) => {
+    const { error } = schema.validate(req.body);
+    if (error) {
+      const fieldName = error.details[0].context.label;
+      error.status = 400;
+      error.message = `${fieldName} field is required and must be one of the list: starter, pro, business`;
+      next(error);
+      return;
+    }
+    next();
+  };
+};
 
 module.exports = {
   validationAddContact,
   validationUpdateContact,
   validationUpdateStatusContact,
   validationRegister,
+  validationUpdateSubscription,
 };
