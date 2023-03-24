@@ -8,6 +8,7 @@ const {
 const ctrlWrapper = require("./ctrlWrapper");
 const isValidId = require("./isValidId");
 const auth = require("./auth");
+const upload = require("./upload");
 
 module.exports = {
   validationUpdateContact,
@@ -18,4 +19,5 @@ module.exports = {
   ctrlWrapper,
   isValidId,
   auth,
+  upload,
 };

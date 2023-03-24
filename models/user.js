@@ -17,7 +17,14 @@ const userSchema = new Schema({
     enum: ["starter", "pro", "business"],
     default: "starter",
   },
-  token: String,
+  avatarURL: {
+    type: String,
+    required: true,
+  },
+  token: {
+    type: String,
+    default: "",
+  },
 });
 
 userSchema.methods.setPassword = async function (password) {
