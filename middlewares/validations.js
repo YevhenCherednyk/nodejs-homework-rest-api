@@ -51,6 +51,7 @@ const validationRegister = (schema) => {
     next();
   };
 };
+
 const validationUpdateSubscription = (schema) => {
   return (req, res, next) => {
     const { error } = schema.validate(req.body);
@@ -65,10 +66,23 @@ const validationUpdateSubscription = (schema) => {
   };
 };
 
+const validationVeryfyEmail = (schema) => {
+  return (req, res, next) => {
+    const { error } = schema.validate(req.body);
+
+    if (error) {
+      error.status = 400;
+      error.message = "missing required field email";
+      next(error);
+      return;
+    }
+  };
+};
 module.exports = {
   validationAddContact,
   validationUpdateContact,
   validationUpdateStatusContact,
   validationRegister,
   validationUpdateSubscription,
+  validationVeryfyEmail,
 };

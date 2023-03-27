@@ -4,6 +4,7 @@ const {
   validationUpdateStatusContact,
   validationRegister,
   validationUpdateSubscription,
+  validationVeryfyEmail,
 } = require("./validations");
 const ctrlWrapper = require("./ctrlWrapper");
 const isValidId = require("./isValidId");
@@ -16,6 +17,7 @@ module.exports = {
   validationUpdateStatusContact,
   validationRegister,
   validationUpdateSubscription,
+  validationVeryfyEmail,
   ctrlWrapper,
   isValidId,
   auth,
