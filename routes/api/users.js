@@ -4,7 +4,7 @@ const {
   ctrlWrapper,
   validationRegister,
   validationUpdateSubscription,
-  validationVeryfyEmail,
+  validationVerifyEmail,
   auth,
   upload,
 } = require("../../middlewares");
@@ -22,7 +22,7 @@ const {
 const {
   joiSchema,
   updateSubscriptionSchema,
-  veryfyEmailSchema,
+  verifyEmailSchema,
 } = require("../../models/user");
 
 const router = express.Router();
@@ -33,7 +33,7 @@ router.get("/verify/:verificationToken", ctrlWrapper(verifyEmail));
 
 router.post(
   "/verify",
-  validationVeryfyEmail(veryfyEmailSchema),
+  validationVerifyEmail(verifyEmailSchema),
   ctrlWrapper(resendVerifyEmail)
 );
 

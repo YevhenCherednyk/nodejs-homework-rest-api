@@ -34,8 +34,6 @@ const register = async (req, res, next) => {
     html: `<a href="http://localhost:3000/api/users/verify/${verificationToken}" target="blank">Сlick to confirm email</a>`,
   };
 
-  console.log(mail);
-
   await sendEmail(mail);
 
   const hashPassword = newUser.password;
@@ -145,7 +143,7 @@ const verifyEmail = async (req, res, next) => {
 
 const resendVerifyEmail = async (req, res, next) => {
   const { email } = req.body;
-  const user = User.findOne({ email });
+  const user = await User.findOne({ email });
 
   if (!user) {
     throw RequestError(404, "User not found");

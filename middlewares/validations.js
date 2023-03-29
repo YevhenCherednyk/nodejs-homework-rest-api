@@ -66,7 +66,7 @@ const validationUpdateSubscription = (schema) => {
   };
 };
 
-const validationVeryfyEmail = (schema) => {
+const validationVerifyEmail = (schema) => {
   return (req, res, next) => {
     const { error } = schema.validate(req.body);
 
@@ -76,6 +76,7 @@ const validationVeryfyEmail = (schema) => {
       next(error);
       return;
     }
+    next();
   };
 };
 module.exports = {
@@ -84,5 +85,5 @@ module.exports = {
   validationUpdateStatusContact,
   validationRegister,
   validationUpdateSubscription,
-  validationVeryfyEmail,
+  validationVerifyEmail,
 };

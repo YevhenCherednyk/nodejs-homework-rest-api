@@ -57,7 +57,7 @@ const updateSubscriptionSchema = Joi.object({
   subscription: Joi.string().valid("starter", "pro", "business").required(),
 });
 
-const veryfyEmailSchema = Joi.object({
+const verifyEmailSchema = Joi.object({
   email: Joi.string().email().required(),
 });
 
@@ -67,5 +67,5 @@ module.exports = {
   User,
   joiSchema,
   updateSubscriptionSchema,
-  veryfyEmailSchema,
+  verifyEmailSchema,
 };
