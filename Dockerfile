@@ -1,27 +1,11 @@
-# FROM node
-
-# WORKDIR /app
-
-# COPY . .
-
-# RUN npm install
-
-# EXPOSE 3000
-
-# CMD ["node","server.js"]
-
 FROM node
 
 WORKDIR /app
 
-COPY package.json .
+COPY . .
 
 RUN npm install
 
-COPY . .
+EXPOSE 3000
 
-ENV PORT 3000
-
-EXPOSE $PORT
-
-CMD [ "node","server.js" ]
+CMD ["node","server.js"]
