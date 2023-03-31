@@ -4,9 +4,11 @@ const {
   ctrlWrapper,
   validationRegister,
   validationUpdateSubscription,
+  validationVerifyEmail,
   auth,
   upload,
 } = require("../../middlewares");
+
 const {
   register,
   login,
@@ -14,12 +16,26 @@ const {
   logout,
   updateSubscription,
   updateAvatar,
+  verifyEmail,
+  resendVerifyEmail,
 } = require("../../controllers/usersController");
-const { joiSchema, updateSubscriptionSchema } = require("../../models/user");
+const {
+  joiSchema,
+  updateSubscriptionSchema,
+  verifyEmailSchema,
+} = require("../../models/user");
 
 const router = express.Router();
 
 router.post("/register", validationRegister(joiSchema), ctrlWrapper(register));
+
+router.get("/verify/:verificationToken", ctrlWrapper(verifyEmail));
+
+router.post(
+  "/verify",
+  validationVerifyEmail(verifyEmailSchema),
+  ctrlWrapper(resendVerifyEmail)
+);
 
 router.post("/login", validationRegister(joiSchema), ctrlWrapper(login));
 
